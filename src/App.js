@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link, Route, Routes } from 'react-router-dom';
+import './App.css'
+import FindIds from './pages/FindIds';
+import FindPasswords from './pages/FindPasswords';
+import FindUsers from './pages/FindUsers';
+import NotFound from './pages/NotFound';
 
 function App() {
+
+  let items = ['4', '2', '1', '2', '3', '1', '1'];
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <Link to='/'>FindUsers</Link>
+        <Link to='/pass'>passwords</Link>
+        <Link to='/ids'>ids</Link>
       </header>
-    </div>
+
+      <Routes>
+        <Route path='/' element={<FindUsers props={items} />} />
+        <Route path='/ids' element={<FindIds />} />
+        <Route path='/pass' element={<FindPasswords />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 
